@@ -13,6 +13,27 @@ h1 {
   text-align: center;
 }
 
+.container {
+  margin: 0 auto !important;
+}
+
+.scroll {
+  height: 50vh; /* %-height of the viewport */
+  width: 50vh;
+  position: center;
+  overflow-y: scroll;
+  margin: 0 auto !important;
+
+}
+
+.form-group {
+  margin: 0 auto 50px;
+  max-width: 500px;
+  padding: 15px;
+  position: relative;
+}
+
+
 /** Speech bubble */
 
 .past-bubble {
