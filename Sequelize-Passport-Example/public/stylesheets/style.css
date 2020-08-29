@@ -5,9 +5,7 @@ html, body {
 }
 body {
   margin: 20px;
-  background-color:#ff4d4d
-  ;
-
+  background-color:#ff4d4d;
 }
 
 h1 {
@@ -19,6 +17,26 @@ h1 {
 .container {
   margin: 0 auto !important;
   border-top: 150px solid #ff4d4d;
+}
+
+.chat-container {
+    margin: 0 auto !important;
+    border-top: 30px solid #ff4d4d;
+}
+
+.input {
+  width: 320px;
+  text-align: center;
+  position: center;
+  margin: 0 auto !important;
+  margin-right: 0;
+  float: left;
+}
+
+.btn {
+  float: right;
+  margin-left: 0;
+  width: 70px;
 }
 
 .scroll {
