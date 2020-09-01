@@ -115,6 +115,7 @@ h1 {
   right: 15px;
 }
 
+
 .new-bubble-arrow::before {
   border-left: 23px solid transparent;
   border-top: 23px solid #a7a7a7;
