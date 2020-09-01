@@ -68,23 +68,20 @@ h1 {
   max-width: 400px;
   padding: 15px;
   position: relative;
-
-  .past-bubble {
-    margin: 0 0 10px;
-
-    :last-of-type {
-      margin-bottom: 0;
-    }
-  }
-
-  &::after {
-    border-left: 20px solid transparent;
-    border-top: 20px solid #efefef;
-    bottom: -20px;
-    content: "";
-    position: absolute;
-    right: 20px;
-  }
+}
+.past-bubble .past-bubble {
+  margin: 0 0 10px;
+}
+.past-bubble .past-bubble :last-of-type {
+  margin-bottom: 0;
+}
+.past-bubble::after {
+  border-left: 20px solid transparent;
+  border-top: 20px solid #efefef;
+  bottom: -20px;
+  content: "";
+  position: absolute;
+  right: 20px;
 }
 
 /** Speech bubble with drop shadow and border */
