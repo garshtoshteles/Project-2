@@ -1,5 +1,4 @@
 
-
 // The insults must be retrieved from the database
 
 // The bot asks questions about the user to narrow down their insults.
@@ -28,13 +27,20 @@
 // user replies, reply is pushed into a chat bubble and logged
 
     // function to grab input of textarea & store it for use when user clicks send
+
+    function getInputValue(){
+        var inputVal = document.getElementById("userInput").value;
+        console.log(inputVal);
+    }
+
+    // function to plug input of textarea into a chat bubble and change the css color of that chat bubble (to make an obvious difference between bot/human bubbles)
     // function to clear input field
 
 // reply is determined to be yes/no/other
 
     // function to categorize the input
 
-// while we log/categorize response, have bot thinking
+// while we log/categorize response, have bot thinking maybe ???
 
     // set timeout function to add a realistic feature of someone thinking, not too long!
 
@@ -49,5 +55,3 @@
 
 
 // feature to add insults to database
-
-
