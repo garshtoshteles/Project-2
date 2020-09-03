@@ -1,4 +1,3 @@
-
 // The insults must be retrieved from the database
 
 // The bot asks questions about the user to narrow down their insults.
@@ -15,54 +14,52 @@
 
 // User must be able to give an insult and have the computer recognize it. Keyword?
 
-
 // -------------------------------------------------------------------------
 
 // this is just me getting my thoughts together -mandy
 
 // load site and first chat bubble from bot says something to begin conversation
 
-        //document ready function?
+//document ready function?
 
 // user replies, reply is pushed into a chat bubble and logged
 
-    // function to grab input of textarea & store it for use when user clicks send
-let inputVal = []
+// function to grab input of textarea & store it for use when user clicks send
+let inputVal;
 const inputArr = [];
 
+function getInputValue() {
+  inputVal = $("#userInput").val();
+  inputArr.push(inputVal);
+  console.log("gIV done");
+  pushUserBubble();
+}
 
-    function getInputValue(){
-        let inputVal = document.getElementById("userInput").value;
-        inputArr.push(inputVal);
-        pushUserBubble();
-    }
+// function to plug input of textarea into a chat bubble and clear input field
 
-    // function to plug input of textarea into a chat bubble and clear input field
-
-
-    function pushUserBubble(){
-            var bubble = document.createElement("P");
-            bubble.innerHTML = document.getElementById("userInput").value;
-            document.getElementById("newBub").appendChild(bubble);
-            document.getElementById("userInput").value = "";
-    }
+function pushUserBubble() {
+  console.log($("#userInput").val());
+  let bubble = $("<p>").html($("#userInput").val());
+  $("#newBub").append(bubble);
+  $("#userInput").val("");
+  console.log("bubble pushed");
+}
 
 // reply is determined to be yes/no/other
 
-    // function to categorize the input
+// function to categorize the input
 
 // while we log/categorize response, have bot thinking maybe ???
 
-    // set timeout function to add a realistic feature of someone thinking, not too long!
+// set timeout function to add a realistic feature of someone thinking, not too long!
 
 // a random insult is pulled from database from yes/no/other category is pushed to the bot chat bubble
 
-    // function to pull apropriate category insult from database
-    // function should randomize it and then remove it from future insults
+// function to pull apropriate category insult from database
+// function should randomize it and then remove it from future insults
 
-    // function to put response into a chat bubble and push it to the bottom of the chat
+// function to put response into a chat bubble and push it to the bottom of the chat
 
 // that insult should be taken out of future responses to not be repeated
-
 
 // feature to add insults to database
