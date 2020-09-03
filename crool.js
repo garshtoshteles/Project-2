@@ -27,14 +27,25 @@
 // user replies, reply is pushed into a chat bubble and logged
 
     // function to grab input of textarea & store it for use when user clicks send
+let inputVal = []
+const inputArr = [];
+
 
     function getInputValue(){
-        var inputVal = document.getElementById("userInput").value;
-        console.log(inputVal);
+        let inputVal = document.getElementById("userInput").value;
+        inputArr.push(inputVal);
+        pushUserBubble();
     }
 
-    // function to plug input of textarea into a chat bubble and change the css color of that chat bubble (to make an obvious difference between bot/human bubbles)
-    // function to clear input field
+    // function to plug input of textarea into a chat bubble and clear input field
+
+
+    function pushUserBubble(){
+            var bubble = document.createElement("P");
+            bubble.innerHTML = document.getElementById("userInput").value;
+            document.getElementById("newBub").appendChild(bubble);
+            document.getElementById("userInput").value = "";
+    }
 
 // reply is determined to be yes/no/other
 
