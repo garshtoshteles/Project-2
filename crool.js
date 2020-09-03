@@ -38,7 +38,6 @@ function getInputValue() {
 // function to plug input of textarea into a chat bubble and clear input field
 
 function pushUserBubble() {
-  console.log($("#userInput").val());
   let bubble = $("<p>").html($("#userInput").val());
   $("#newBub").append(bubble);
   $("#userInput").val("");
@@ -46,6 +45,61 @@ function pushUserBubble() {
 }
 
 // reply is determined to be yes/no/other
+
+function determineIO() {
+  let userResponse = inputVal.toLowerCase();
+  console.log("determineIO running.");
+  console.log(userResponse);
+  if (isAffirmative(userResponse)) {
+    console.log("answer is yes");
+  } else if (isNegative(userResponse)) {
+    console.log("answer is no");
+  } else {
+    console.log("answer is something else");
+  }
+}
+
+const yesArr = [
+  "yeah",
+  "y",
+  "ya",
+  "yea",
+  "ye",
+  "mhm",
+  "yes",
+  "mhmm",
+  "i do",
+  "i have",
+  "of course",
+];
+const noArr = [
+  "no",
+  "nah",
+  "n",
+  "never",
+  "i haven't",
+  "i don't",
+  "i'm not",
+  "of course not",
+];
+
+function isAffirmative(text) {
+  for (let i = 0; i < yesArr.length; i++) {
+    if (text == yesArr[i]) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function isNegative(text) {
+  for (let i = 0; i < noArr.length; i++) {
+    if (text == noArr[i]) {
+      return true;
+    }
+  }
+  return false;
+}
 
 // function to categorize the input
 
