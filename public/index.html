@@ -26,28 +26,37 @@
           <strong>HELLO?</strong>
         </div>
 
-        <div id="newBub">
-          </div>
+        <div id="newBub"></div>
 
-        <br style="text-align: center">
-          Read more:
-          <a
-            href="https://auralinna.blog/post/2017/how-to-make-a-css-speech-bubble-with-borders-and-drop-shadow"
-            target="_blank"
-            >How to make a CSS speech bubble with borders and drop shadow</a
-          >
-        </br>
+        <br style="text-align: center" />
+        Angry?
+        <a onclick="receiveInsult()" style="font-weight: bold; color: white"
+          >Talk some trash - Gimme the best you've got.</a
+        >
       </div>
-  
-<div class="chat-container text-center">
-    <div class="col-sm-4"></div>
-      <div class="input col-sm-4">
-        <input type="text" class="form-control" id="userInput" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-        <button type="button" class="btn btn-dark col-sm-1" onclick="getInputValue();determineIO()">SEND</button>
-      </div>
-</div>
+    </div>
 
-<!-- <script>
+    <div class="chat-container text-center">
+      <div class="col-sm-4"></div>
+      <div id="typebox" class="input col-sm-4">
+        <input
+          type="text"
+          class="form-control"
+          id="userInput"
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+        />
+        <button
+          type="button"
+          class="btn btn-dark col-sm-1"
+          onclick="getInputValue();determineIO()"
+        >
+          SEND
+        </button>
+      </div>
+    </div>
+
+    <!-- <script>
   var slider = document.getElementById("myRange");
   var output = document.getElementById("demo");
   output.innerHTML = slider.value;
@@ -55,6 +64,5 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="../crool.js"></script>
-
   </body>
 </html>
