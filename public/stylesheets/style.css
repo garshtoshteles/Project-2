@@ -6,7 +6,7 @@ body {
 }
 body {
   margin: 20px;
-  background-color: #ff4d4d;
+  background-color: white;
 }
 
 h1 {
@@ -17,12 +17,12 @@ h1 {
 
 .container {
   margin: 0 auto !important;
-  border-top: 150px solid #ff4d4d;
+  border-top: 150px solid white;
 }
 
 .chat-container {
   margin: 0 auto !important;
-  border-top: 30px solid #ff4d4d;
+  border-top: 30px solid white;
 }
 
 .userInput {
@@ -45,8 +45,14 @@ h1 {
   width: 50vh;
   position: center;
   overflow-y: scroll;
+  border-radius: 10px;
   margin: 0 auto !important;
-  background-color: white;
+  background-color: #ff4d4d;
+}
+
+#typebox {
+  border-color: #ff4d4d;
+  border: thick;
 }
 
 .form-group {
