@@ -22,13 +22,13 @@
       <div class="scroll">
         <h1>CROOOOOL</h1>
 
-        <div class="new-bubble">
+        <div class="bot-bubble">
           <strong>HELLO?</strong>
         </div>
 
         <div id="newBub"></div>
 
-        <br style="text-align: center" />
+        <br style="text-align: center position: end" />
         Angry?
         <a onclick="receiveInsult()" style="font-weight: bold; color: white"
           >Talk some trash - Gimme the best you've got.</a
@@ -38,26 +38,25 @@
 
     <div class="chat-container text-center">
       <div class="row">
-        <div class="col-sm-4"></div>
-        <div id="typebox" class="input col-sm-4">
-          <input
-            type="text"
-            class="form-control col-md-3"
-            id="userInput"
-            aria-label="Default"
-            aria-describedby="inputGroup-sizing-default"
-          />
-          <button
-            type="button"
-            id="sendbutton"
-            class="btn btn-dark col-md-1"
-            onclick="getInputValue();determineIO()"
-          >
-            SEND
-          </button>
-        </div>
+
+      <div class="col-sm-4"></div>
+      <div id="typebox" class="input col-sm-4">
+      
+        <input
+          type="text"
+          class="form-control col-md-3"
+          id="userInput"
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+        />
+        <button
+          type="button"
+          class="btn btn-dark col-md-1"
+          onclick="getInputValue();determineIO()">SEND</button>
       </div>
     </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="../crool.js"></script>
   </body>
