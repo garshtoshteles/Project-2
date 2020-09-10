@@ -1,12 +1,13 @@
 DROP DATABASE IF EXISTS db_Crool;
 CREATE DATABASE db_Crool;
-USE db_Crool;
+
 CREATE TABLE insults (
     id INT NOT NULL AUTO_INCREMENT,
     Contents VARCHAR(100),
     Intensity INT NOT NULL,
     PRIMARY KEY (id)
 );
+USE db_Crool;
 INSERT INTO insults (Contents, Intensity)
 VALUES (
         (
