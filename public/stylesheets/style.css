@@ -25,8 +25,8 @@ h1 {
   border-top: 30px solid white;
 }
 
-.userInput {
-  width: 320px;
+#userInput {
+  width: 380px;
   text-align: center;
   position: center;
   margin: 0 auto !important;
@@ -37,7 +37,7 @@ h1 {
 .btn {
   float: right !important;
   margin-left: auto !important;
-  width: 50px;
+  width: 70px;
 }
 
 .scroll {

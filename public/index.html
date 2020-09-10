@@ -37,24 +37,28 @@
     </div>
 
     <div class="chat-container text-center">
+      <div class="row">
       <div class="col-sm-4"></div>
       <div id="typebox" class="input col-sm-4">
+      
         <input
           type="text"
-          class="form-control"
+          class="form-control col-md-3"
           id="userInput"
           aria-label="Default"
           aria-describedby="inputGroup-sizing-default"
         />
         <button
           type="button"
-          class="btn btn-dark col-sm-1"
+          class="btn btn-dark col-md-1"
           onclick="getInputValue();determineIO()"
         >
           SEND
         </button>
       </div>
     </div>
+    </div>
+
 
     <!-- <script>
   var slider = document.getElementById("myRange");
