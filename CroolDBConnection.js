@@ -8,14 +8,14 @@ var connection = mysql.createConnection({
 
   // Your username
   user: "root",
-
-  // Your password
-  password: "Famous101",
+  password: "keroKero445",
   database: "db_Crool",
 });
 
-connection.connect(function(err) {
+connection.connect((err) => {
   if (err) throw err;
   console.log("connected as id " + connection.threadId);
   connection.end();
 });
+
+module.exports = connection;
