@@ -1,3 +1,22 @@
+
+let inputVal;
+const inputArr = [];
+
+//load document and bot asks how mean in a 1 second delayed chat bubble
+$(function() {
+  setTimeout(function(){
+  let bubble = $("<p>").addClass("bot-bubble").append("Looking for a rude conversation or just straight up mean?");
+  $("#newBub").append(bubble);
+},1000);
+});
+
+//user replies with preference I DONT KNOW HOW TO FINISH THIS CODE
+function howMean() {
+  inputVal = $("#userInput").val();
+  
+  //if input value equals "rude" then pull from 1 ratings
+  //else pull from 2 ratings
+
 const mysql = require("mysql");
 const connection = require("./CroolDBConnection.js");
 
@@ -9,32 +28,21 @@ connection.query("SELECT * FROM insults", function(err, result, fields) {
   console.log(result);
 });
 
-// Insults must be pushed into chat bubbles belonging to the bot, in ascending recency
-
-// User's input must be pushed up into a bubble at the bottom of the chat
-
-// function to grab input of textarea & store it for use when user clicks send
-let inputVal;
-const inputArr = [];
-
+//get user input
 function getInputValue() {
   inputVal = $("#userInput").val();
   inputArr.push(inputVal);
   pushUserBubble();
 }
 
-// function to plug input of textarea into a chat bubble and clear input field
-
+//push user input into chat bubble
 function pushUserBubble() {
-  let bubble = $("<p>").html($("#userInput").val());
-  bubble.addClass("user-bubble");
+  let bubble = $("<p>").addClass("user-bubble").html($("#userInput").val());
   $("#newBub").append(bubble);
   $("#userInput").val("");
-  console.log("bubble pushed");
 }
 
 // reply is determined to be yes/no/other
-
 function determineIO() {
   let userResponse = inputVal.toLowerCase();
   console.log("determineIO running.");
@@ -48,6 +56,7 @@ function determineIO() {
   }
 }
 
+//possible user inputs for yes
 const yesArr = [
   "yeah",
   "y",
@@ -61,6 +70,8 @@ const yesArr = [
   "i have",
   "of course",
 ];
+
+//possible user inputs for no
 const noArr = [
   "no",
   "nah",
@@ -72,6 +83,7 @@ const noArr = [
   "of course not",
 ];
 
+//determin yes response
 function isAffirmative(text) {
   for (let i = 0; i < yesArr.length; i++) {
     if (text == yesArr[i]) {
@@ -81,6 +93,7 @@ function isAffirmative(text) {
   return false;
 }
 
+//determin no response
 function isNegative(text) {
   for (let i = 0; i < noArr.length; i++) {
     if (text == noArr[i]) {
@@ -90,13 +103,10 @@ function isNegative(text) {
   return false;
 }
 
-// function to categorize the input
 
-// set timeout function to add a realistic feature of someone thinking, not too long!
-
-// a random insult is pulled from database from yes/no/other category is pushed to the bot chat bubble and then remove it from future insults
-
-// function to actually call up the insult
+// function to pull apropriate category insult from database
+// function should randomize it and then remove it from future insults
+// send the insult using a setTimeout on pushCroolBubble
 
 // function that accepts text and pushes it to a bot-bubble
 function pushCroolBubble(text) {
@@ -104,10 +114,6 @@ function pushCroolBubble(text) {
   croolBubble.addClass("bot-bubble");
   $("#newBub").append(croolBubble);
 }
-
-// function to put response into a chat bubble and push it to the bottom of the chat
-
-// that insult should be taken out of future responses to not be repeated
 
 // feature to add insults to database
 
