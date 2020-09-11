@@ -1,3 +1,4 @@
+
 let inputVal;
 const inputArr = [];
 
@@ -16,9 +17,16 @@ function howMean() {
   //if input value equals "rude" then pull from 1 ratings
   //else pull from 2 ratings
 
-  //???
+const mysql = require("mysql");
+const connection = require("./CroolDBConnection.js");
 
-}
+// The insults must be retrieved from the database
+
+// NOT SURE IF THIS WORKS. LOOK LATER.
+connection.query("SELECT * FROM insults", function(err, result, fields) {
+  if (err) throw err;
+  console.log(result);
+});
 
 //get user input
 function getInputValue() {
@@ -95,13 +103,21 @@ function isNegative(text) {
   return false;
 }
 
+
 // function to pull apropriate category insult from database
 // function should randomize it and then remove it from future insults
+// send the insult using a setTimeout on pushCroolBubble
 
-// function to put response into a chat bubble from the bot, needs an event listener
-// setTimeout(function(){
-//   let bubble = $("<p>").addClass("bot-bubble").append(" ");
-//   $("#newBub").append(bubble);
-// },1000);
+// function that accepts text and pushes it to a bot-bubble
+function pushCroolBubble(text) {
+  let croolBubble = $("<p>").html(text);
+  croolBubble.addClass("bot-bubble");
+  $("#newBub").append(croolBubble);
+}
 
 // feature to add insults to database
+
+function receiveInsult() {
+  pushCroolBubble("Okay, let's hear the best you've got.");
+  // UNFINISHED
+}
