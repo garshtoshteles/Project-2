@@ -20,9 +20,29 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Requiring our routes
-require("../routes/html-routes.js")(app);
-require("../routes/api-routes.js")(app);
+//
+// ROUTES
+//
+
+var Insults = require("../models/insults.js");
+
+app.get("/api/all", (req, res) => {
+  // function to pull all insults
+  Insults.findAll({}).then((results) => {});
+});
+app.get("/api/soft", (req, res) => {
+  // function to pull only softer insults
+  Insults.findAll({
+    where: { intensity: 1 },
+  }).then((results) => {});
+});
+app.post("/api/new", (req, res) => {
+  // function to send the new insult to the DB
+});
+
+//
+//
+//
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(() => {

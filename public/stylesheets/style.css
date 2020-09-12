@@ -65,7 +65,8 @@ h1 {
 
 /** Speech bubbles **/
 
-.bot-bubble, p {
+.bot-bubble,
+p {
   background: #efefef;
   border: 1px solid #a7a7a7;
   border-radius: 4px;
@@ -79,7 +80,8 @@ h1 {
   position: relative;
 }
 
-.user-bubble, p {
+.user-bubble,
+p {
   background: #cecece;
   border: 1px solid #efefef;
   border-radius: 4px;

@@ -1,32 +1,26 @@
-
 let inputVal;
+let holdback = false;
 const inputArr = [];
 
 //load document and bot asks how mean in a 1 second delayed chat bubble
-$(function() {
-  setTimeout(function(){
-  let bubble = $("<p>").addClass("bot-bubble").append("Looking for a rude conversation or just straight up mean?");
-  $("#newBub").append(bubble);
-},1000);
+$(() => {
+  setTimeout(() => {
+    let bubble = $("<p>")
+      .addClass("bot-bubble")
+      .append("I can be pretty cruel. You want me to go easy on you?");
+    $("#newBub").append(bubble);
+    $("#theButton").attr("onclick", "determineIO()");
+  }, 1000);
 });
 
 //user replies with preference I DONT KNOW HOW TO FINISH THIS CODE
 function howMean() {
   inputVal = $("#userInput").val();
-  
+
   //if input value equals "rude" then pull from 1 ratings
   //else pull from 2 ratings
-
-const mysql = require("mysql");
-const connection = require("./CroolDBConnection.js");
-
+}
 // The insults must be retrieved from the database
-
-// NOT SURE IF THIS WORKS. LOOK LATER.
-connection.query("SELECT * FROM insults", function(err, result, fields) {
-  if (err) throw err;
-  console.log(result);
-});
 
 //get user input
 function getInputValue() {
@@ -37,22 +31,30 @@ function getInputValue() {
 
 //push user input into chat bubble
 function pushUserBubble() {
-  let bubble = $("<p>").addClass("user-bubble").html($("#userInput").val());
+  let bubble = $("<p>")
+    .addClass("user-bubble")
+    .html($("#userInput").val());
   $("#newBub").append(bubble);
   $("#userInput").val("");
 }
 
 // reply is determined to be yes/no/other
 function determineIO() {
+  getInputValue();
   let userResponse = inputVal.toLowerCase();
   console.log("determineIO running.");
   console.log(userResponse);
   if (isAffirmative(userResponse)) {
     console.log("answer is yes");
+    holdback = true;
   } else if (isNegative(userResponse)) {
     console.log("answer is no");
+    holdback = false;
   } else {
     console.log("answer is something else");
+    pushCroolBubble(
+      "Can't even answer a simple binary question? Things aren't looking good for you."
+    );
   }
 }
 
@@ -102,7 +104,6 @@ function isNegative(text) {
   }
   return false;
 }
-
 
 // function to pull apropriate category insult from database
 // function should randomize it and then remove it from future insults
