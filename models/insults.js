@@ -1,27 +1,24 @@
-// Creating our User model
-var Sequelize = require("sequelize");
-var sequelize = require("../CroolDBConnection.js");
+const Sequelize = require("sequelize");
 
-const Insults = sequelize.define("Insults", {
-  contents: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    unique: true,
-  },
-  intensity: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
-  createdAt: {
-    type: Sequelize.DATE,
-    defaultValue: Sequelize.fn("NOW"),
-  },
-  updatedAt: {
-    type: Sequelize.DATE,
-    defaultValue: Sequelize.fn("NOW"),
-  },
-});
-
-Insults.sync();
-
-module.exports = Insults;
+module.exports = function(sequelize, DataTypes) {
+  var Insults = sequelize.define("Insults", {
+    contents: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    intensity: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      defaultValue: Sequelize.fn("NOW"),
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      defaultValue: Sequelize.fn("NOW"),
+    },
+  });
+  return Insults;
+};
