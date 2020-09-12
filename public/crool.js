@@ -1,6 +1,7 @@
 let inputVal;
 let holdback = false;
-const inputArr = [];
+let croolPath;
+const insultsArr = [];
 
 //load document and bot asks how mean in a 1 second delayed chat bubble
 $(() => {
@@ -9,23 +10,33 @@ $(() => {
       .addClass("bot-bubble")
       .append("I can be pretty cruel. You want me to go easy on you?");
     $("#newBub").append(bubble);
-    $("#theButton").attr("onclick", "determineIO()");
+    croolPath = "determine";
   }, 1000);
 });
 
-//user replies with preference I DONT KNOW HOW TO FINISH THIS CODE
-function howMean() {
-  inputVal = $("#userInput").val();
-
-  //if input value equals "rude" then pull from 1 ratings
-  //else pull from 2 ratings
+function clickRes() {
+  if (croolPath == "determine") {
+    // determining if you want hard insults or not
+    determineIO();
+  } else if (croolPath == "insult") {
+    // being insulted
+    if (holdback == false) {
+      // if they want all the insults
+      anyInsult();
+    } else {
+      // if they want only the softer insults
+      softInsult();
+    }
+  } else if (croolPath == "receive") {
+    // giving the computer an insult
+  }
 }
+
 // The insults must be retrieved from the database
 
 //get user input
 function getInputValue() {
   inputVal = $("#userInput").val();
-  inputArr.push(inputVal);
   pushUserBubble();
 }
 
@@ -47,15 +58,21 @@ function determineIO() {
   if (isAffirmative(userResponse)) {
     console.log("answer is yes");
     holdback = true;
+    pushCroolBubble(
+      "Oh, are your feelings too delicate to hear the truth? Not all of us are strong, it's okay."
+    );
   } else if (isNegative(userResponse)) {
     console.log("answer is no");
     holdback = false;
+    pushCroolBubble("Don't blame me if you close this in tears.");
   } else {
     console.log("answer is something else");
     pushCroolBubble(
       "Can't even answer a simple binary question? Things aren't looking good for you."
     );
   }
+  croolPath = "insult";
+  console.log(croolPath);
 }
 
 //possible user inputs for yes
@@ -94,6 +111,7 @@ function isAffirmative(text) {
   }
   return false;
 }
+c;
 
 //determin no response
 function isNegative(text) {
@@ -106,6 +124,19 @@ function isNegative(text) {
 }
 
 // function to pull apropriate category insult from database
+function anyInsult() {
+  $.get("/api/all", (data) => {
+    console.log(data);
+    insultsArr.push(data);
+  });
+}
+
+function softInsult() {
+  $.get("/api/soft", (data) => {
+    console.log(data);
+    insultsArr.push(data);
+  });
+}
 // function should randomize it and then remove it from future insults
 // send the insult using a setTimeout on pushCroolBubble
 
@@ -120,5 +151,5 @@ function pushCroolBubble(text) {
 
 function receiveInsult() {
   pushCroolBubble("Okay, let's hear the best you've got.");
-  // UNFINISHED
+  croolPath = "receive";
 }
