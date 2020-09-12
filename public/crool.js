@@ -1,6 +1,6 @@
 let inputVal;
-let holdback = false;
 let croolPath;
+let newContents;
 const insultsArr = [];
 
 //load document and bot asks how mean in a 1 second delayed chat bubble
@@ -20,19 +20,25 @@ function clickRes() {
     determineIO();
   } else if (croolPath == "insult") {
     // being insulted
-    if (holdback == false) {
-      // if they want all the insults
-      anyInsult();
-    } else {
-      // if they want only the softer insults
-      softInsult();
-    }
-  } else if (croolPath == "receive") {
+    getInputValue();
+    setTimeout(() => {
+      randomInsult();
+    }, 1000);
+  } else if (croolPath == "receiveIns") {
     // giving the computer an insult
+    sendInsult();
+  } else if (croolPath == "receiveInt") {
+    sendIntensity();
   }
 }
 
 // The insults must be retrieved from the database
+function randomInsult() {
+  console.log(insultsArr);
+  pushCroolBubble(
+    insultsArr[Math.floor(Math.random() * insultsArr.length)].contents
+  );
+}
 
 //get user input
 function getInputValue() {
@@ -57,19 +63,20 @@ function determineIO() {
   console.log(userResponse);
   if (isAffirmative(userResponse)) {
     console.log("answer is yes");
-    holdback = true;
     pushCroolBubble(
       "Oh, are your feelings too delicate to hear the truth? Not all of us are strong, it's okay."
     );
+    softInsult();
   } else if (isNegative(userResponse)) {
     console.log("answer is no");
-    holdback = false;
     pushCroolBubble("Don't blame me if you close this in tears.");
+    anyInsult();
   } else {
     console.log("answer is something else");
     pushCroolBubble(
       "Can't even answer a simple binary question? Things aren't looking good for you."
     );
+    return;
   }
   croolPath = "insult";
   console.log(croolPath);
@@ -111,7 +118,6 @@ function isAffirmative(text) {
   }
   return false;
 }
-c;
 
 //determin no response
 function isNegative(text) {
@@ -127,14 +133,16 @@ function isNegative(text) {
 function anyInsult() {
   $.get("/api/all", (data) => {
     console.log(data);
-    insultsArr.push(data);
+    insultsArr.push(...data);
+    setTimeout(randomInsult(), 1000);
   });
 }
 
 function softInsult() {
   $.get("/api/soft", (data) => {
     console.log(data);
-    insultsArr.push(data);
+    insultsArr.push(...data);
+    setTimeout(randomInsult(), 1000);
   });
 }
 // function should randomize it and then remove it from future insults
@@ -151,5 +159,28 @@ function pushCroolBubble(text) {
 
 function receiveInsult() {
   pushCroolBubble("Okay, let's hear the best you've got.");
-  croolPath = "receive";
+  croolPath = "receiveIns";
+}
+
+function sendInsult() {
+  getInputValue();
+  // insult is stored in inputVal
+  newContents = inputVal;
+  pushCroolBubble("Is this insult a 1 (softer) or a 2 (meaner)?");
+  croolPath = "receiveInt";
+}
+
+function sendIntensity() {
+  getInputValue();
+  let newInsult = {
+    contents: newContents,
+    intensity: parseInt(inputVal),
+  };
+  $.post("/api/new", newInsult).then(() => {
+    pushCroolBubble(
+      "Nice one. Let's get back to the important stuff - hurting your feelings."
+    );
+    setTimeout(randomInsult(), 1000);
+    croolPath = "insult";
+  });
 }
