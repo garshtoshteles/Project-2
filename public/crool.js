@@ -34,7 +34,6 @@ function clickRes() {
 
 // The insults must be retrieved from the database
 function randomInsult() {
-  console.log(insultsArr);
   pushCroolBubble(
     insultsArr[Math.floor(Math.random() * insultsArr.length)].contents
   );
@@ -59,27 +58,21 @@ function pushUserBubble() {
 function determineIO() {
   getInputValue();
   let userResponse = inputVal.toLowerCase();
-  console.log("determineIO running.");
-  console.log(userResponse);
   if (isAffirmative(userResponse)) {
-    console.log("answer is yes");
     pushCroolBubble(
       "Oh, are your feelings too delicate to hear the truth? Not all of us are strong, it's okay."
     );
     softInsult();
   } else if (isNegative(userResponse)) {
-    console.log("answer is no");
     pushCroolBubble("Don't blame me if you close this in tears.");
     anyInsult();
   } else {
-    console.log("answer is something else");
     pushCroolBubble(
       "Can't even answer a simple binary question? Things aren't looking good for you."
     );
     return;
   }
   croolPath = "insult";
-  console.log(croolPath);
 }
 
 //possible user inputs for yes
@@ -132,7 +125,6 @@ function isNegative(text) {
 // function to pull apropriate category insult from database
 function anyInsult() {
   $.get("/api/all", (data) => {
-    console.log(data);
     insultsArr.push(...data);
     setTimeout(randomInsult(), 1000);
   });
@@ -140,7 +132,6 @@ function anyInsult() {
 
 function softInsult() {
   $.get("/api/soft", (data) => {
-    console.log(data);
     insultsArr.push(...data);
     setTimeout(randomInsult(), 1000);
   });
