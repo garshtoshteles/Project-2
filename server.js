@@ -3,12 +3,12 @@ const express = require("express");
 const session = require("express-session");
 const path = require("path");
 // Requiring passport as we've configured it
-const passport = require("../config/passport");
+const passport = require("./config/passport");
 // var Insults = require("../models/insults.js");
 
 // Setting up port and requiring models for syncing
 const PORT = process.env.PORT || 8080;
-const db = require("../models");
+const db = require("./models");
 
 // Creating express app and configuring middleware needed for authentication
 const app = express();
@@ -53,7 +53,7 @@ app.post("/api/new", (req, res) => {
 //
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/index.html"));
+  res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
 //
